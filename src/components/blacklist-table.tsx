@@ -5,8 +5,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { BlacklistItem } from "@/lib/types";
+} from '@/components/ui/table';
+import { BlacklistItem } from '@/lib/types';
 
 export default function BlacklistTable({
   initialBlacklist,
@@ -17,21 +17,36 @@ export default function BlacklistTable({
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>Date Added</TableHead>
+          <TableHead>Date</TableHead>
           <TableHead>Hostname</TableHead>
           <TableHead>Full URL</TableHead>
-          <TableHead>Status</TableHead>
+          <TableHead className='hidden md:block'>Status</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         {initialBlacklist.map((item) => (
           <TableRow key={item.id}>
             <TableCell>{new Date(item.date).toLocaleDateString()}</TableCell>
-            <TableCell>{item.hostname}</TableCell>
-            <TableCell className="max-w-xs truncate" title={item.full_url}>
-              {item.full_url}
+            <TableCell>
+              <a
+                className='hover:underline'
+                target='_blank'
+                href={item.hostname}
+              >
+                {item.hostname}
+              </a>
             </TableCell>
-            <TableCell>{item.works ? "Working" : "Not Working"}</TableCell>
+            <TableCell
+              className='max-w-xs truncate hover:underline'
+              title={item.full_url}
+            >
+              <a target='_blank' href={item.full_url}>
+                {item.full_url}
+              </a>{' '}
+            </TableCell>
+            <TableCell className='hidden md:block'>
+              {item.works ? 'Working' : 'Not Working'}
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>

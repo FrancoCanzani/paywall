@@ -27,7 +27,7 @@ export default async function ArticleContent({ url }: { url: string }) {
             Sorry, you&lsquo;ve reached the maximum number of articles you can
             read today.
           </p>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-stone-600">
             Please try again later or consider upgrading your account for
             unlimited access.
           </p>
