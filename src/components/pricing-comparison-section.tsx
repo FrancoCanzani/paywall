@@ -91,7 +91,7 @@ export default function PricingComparisonSection() {
           </Table>
         </div>
 
-        <div className='mt-8 text-center'>
+        <div className='mt-8 text-center max-w-2xl mx-auto'>
           <p className='text-sm text-stone-500'>
             Paywall Skip provides access to articles from various sources
             without individual subscriptions, potentially saving you up to $
