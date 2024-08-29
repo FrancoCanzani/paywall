@@ -2,7 +2,7 @@
 
 import { kv } from "@vercel/kv";
 
-const RATE_LIMIT = 2; // Maximum number of articles per day
+const RATE_LIMIT = 50; // Maximum number of articles per day
 const RATE_LIMIT_PERIOD = 24 * 60 * 60; // 24 hours in seconds
 
 export async function checkRateLimit(ip: string): Promise<boolean> {
