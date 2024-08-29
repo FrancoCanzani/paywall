@@ -2,6 +2,7 @@ import Header from "@/components/header";
 import BlacklistTable from "@/components/blacklist-table";
 import { sql } from "@vercel/postgres";
 import { BlacklistItem } from "@/lib/types";
+import { BlacklistTablePagination } from "@/components/blacklist-table-pagination";
 
 const ITEMS_PER_PAGE = 20;
 
@@ -46,6 +47,10 @@ export default async function Page({
           </p>
         </div>
         <BlacklistTable initialBlacklist={blacklistItems} />
+        <BlacklistTablePagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+        />
       </div>
     </div>
   );
