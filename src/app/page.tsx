@@ -130,8 +130,9 @@ export default function PaywallSkipper() {
                 <AccordionContent className='text-stone-600'>
                   PaywallSkipper supports a wide range of popular news websites
                   and academic journals. However, due to the constantly changing
-                  nature of paywalls, we can't guarantee access to every site.
-                  Check our updated list of supported websites for more details.
+                  nature of paywalls, we can&apos;t guarantee access to every
+                  site. Check our updated list of supported websites for more
+                  details.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value='item-4'>

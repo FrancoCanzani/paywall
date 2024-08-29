@@ -20,7 +20,8 @@ export default async function ArticleContent({ url }: { url: string }) {
     return (
       <div className='max-w-3xl mx-auto text-center font-medium w-full px-4 py-8 space-y-3'>
         <p>
-          Sorry, it looks we couldn't skip {new URL(url).hostname}'s paywall.
+          Sorry, it looks we couldn't skip {new URL(url).hostname}&apos;s
+          paywall.
         </p>
         <span>Error: {result.error}</span>
         <button onClick={() => window.location.reload}>
