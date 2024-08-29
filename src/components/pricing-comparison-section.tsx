@@ -34,8 +34,8 @@ export default function PricingComparisonSection() {
         </h2>
         <p className='text-center mb-8 max-w-2xl mx-auto text-stone-600'>
           Quality journalism comes at a price, but access to information
-          shouldn't break the bank. Compare the monthly subscription costs of
-          top news sites with our free Paywall Skip service.
+          shouldn&apos;t break the bank. Compare the monthly subscription costs
+          of top news sites with our free Paywall Skip service.
         </p>
 
         <div className='max-w-2xl mx-auto'>
