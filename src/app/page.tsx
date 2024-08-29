@@ -56,7 +56,7 @@ export default function PaywallSkipper() {
         </nav>
       </header>
       <main className="flex-1">
-        <section className="w-full py-12 md:py-20 lg:py-24 xl:py-32">
+        <section className="w-full py-12 md:py-24 lg:py-28 xl:py-36">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center space-y-8 text-center">
               <div className="space-y-4">
