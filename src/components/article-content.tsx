@@ -23,8 +23,8 @@ export default async function ArticleContent({ url }: { url: string }) {
         <div className="max-w-3xl mx-auto text-center font-medium w-full px-4 py-8 space-y-3">
           <p className="text-xl text-red-600">Rate Limit Exceeded</p>
           <p>
-            Sorry, you've reached the maximum number of articles you can read
-            today.
+            Sorry, you&lsquo;ve reached the maximum number of articles you can
+            read today.
           </p>
           <p className="text-sm text-gray-600">
             Please try again later or consider upgrading your account for
@@ -43,8 +43,8 @@ export default async function ArticleContent({ url }: { url: string }) {
     return (
       <div className="max-w-3xl mx-auto text-center font-medium w-full px-4 py-8 space-y-3">
         <p>
-          Sorry, it looks like we couldn't skip {new URL(url).hostname}'s
-          paywall.
+          Sorry, it looks like we couldn&lsquo;t skip {new URL(url).hostname}
+          &lsquo;s paywall.
         </p>
         <span>Error: {result.error}</span>
         <button
