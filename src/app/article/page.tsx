@@ -18,10 +18,10 @@ export default function Page({
       <div className='max-w-3xl mx-auto px-4 pt-8'>
         <Link
           href={'/'}
-          className='flex text-xs w-full items-center text-gray-500 justify-start'
+          className='flex text-xs w-full items-center text-stone-500 justify-start'
         >
           <ArrowLeft size={12} className='mr-1' />{' '}
-          <span className='hover:underline'>Back</span>
+          <span className='hover:underline'>back</span>
         </Link>
         <ArticleContent url={url} />
       </div>
