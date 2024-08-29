@@ -14,6 +14,8 @@ import { useState } from 'react';
 import Header from '@/components/header';
 import { Clipboard, ClipboardCheck, ClipboardX } from 'lucide-react';
 import { copyToClipboard } from '@/lib/helpers/copy-to-clipboard';
+import BuyMeACoffe from '@/components/buy-me-a-coffe';
+import PricingComparisonSection from '@/components/pricing-comparison-section';
 
 export default function PaywallSkip() {
   const [url, setUrl] = useState('');
@@ -48,6 +50,7 @@ export default function PaywallSkip() {
   return (
     <div className='flex flex-col min-h-screen bg-stone-50'>
       <Header />
+      <BuyMeACoffe />
       <main className='flex-1'>
         <section className='w-full py-12 md:py-24 lg:py-28 xl:py-36'>
           <div className='container px-4 md:px-6'>
@@ -108,7 +111,8 @@ export default function PaywallSkip() {
             </div>
           </div>
         </section>
-        <section className='w-full py-12 md:py-24 lg:py-32 bg-stone-100'>
+        <PricingComparisonSection />
+        <section className='w-full py-12 md:py-24 lg:py-32 bg-stone-50'>
           <div className='container px-4 md:px-6'>
             <h2 className='text-2xl font-bold text-center mb-8 text-stone-800'>
               Frequently Asked Questions
