@@ -4,17 +4,6 @@ import { Link } from 'lucide-react';
 import { getArticleContent } from '@/lib/helpers/get-article';
 import BlacklistForm from './forms/blacklist-form';
 
-interface Article {
-  title: string;
-  content: string;
-  byline: string | null;
-}
-
-interface ArticleResult {
-  article?: Article;
-  error?: string;
-}
-
 export default async function ArticleContent({ url }: { url: string }) {
   const result = await getArticleContent(url);
 
