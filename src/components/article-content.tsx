@@ -1,7 +1,8 @@
 import React from "react";
 import DOMPurify from "isomorphic-dompurify";
-import { Link, RefreshCw } from "lucide-react";
+import { Link } from "lucide-react";
 import { getArticleContent } from "@/lib/helpers/get-article";
+import BlacklistForm from "./forms/blacklist-form";
 
 interface Article {
   title: string;
@@ -40,14 +41,16 @@ export default async function ArticleContent({ url }: { url: string }) {
           &lsquo;s paywall.
         </p>
         <span>Error: {result.error}</span>
+        <BlacklistForm url={url} />
       </div>
     );
   }
 
   if (!result.article) {
     return (
-      <div className="max-w-3xl mx-auto text-center font-medium w-full px-4 py-8">
-        No article content available
+      <div className="max-w-3xl mx-auto text-center font-medium w-full px-4 py-8 space-y-3">
+        <p>No article content available</p>
+        <BlacklistForm url={url} />
       </div>
     );
   }

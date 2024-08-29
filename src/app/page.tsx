@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { BookOpen } from "lucide-react";
 import Link from "next/link";
 import {
   Accordion,
@@ -12,8 +11,9 @@ import {
 } from "@/components/ui/accordion";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Header from "@/components/header";
 
-export default function PaywallSkipper() {
+export default function PaywallSkip() {
   const [url, setUrl] = useState("");
   const router = useRouter();
 
@@ -27,34 +27,7 @@ export default function PaywallSkipper() {
 
   return (
     <div className="flex flex-col min-h-screen bg-stone-50">
-      <header className="px-4 lg:px-6 h-14 flex items-center">
-        <Link className="flex items-center justify-center" href="#">
-          <BookOpen className="h-6 w-6 text-stone-800" />
-          <span className="ml-2 text-lg font-bold text-stone-800">
-            PaywallSkipper
-          </span>
-        </Link>
-        <nav className="ml-auto flex gap-4 sm:gap-6">
-          <Link
-            className="text-sm font-medium hover:underline underline-offset-4 text-stone-700"
-            href="#"
-          >
-            How It Works
-          </Link>
-          <Link
-            className="text-sm font-medium hover:underline underline-offset-4 text-stone-700"
-            href="#"
-          >
-            Pricing
-          </Link>
-          <Link
-            className="text-sm font-medium hover:underline underline-offset-4 text-stone-700"
-            href="#"
-          >
-            About
-          </Link>
-        </nav>
-      </header>
+      <Header />
       <main className="flex-1">
         <section className="w-full py-12 md:py-24 lg:py-28 xl:py-36">
           <div className="container px-4 md:px-6">
@@ -103,10 +76,10 @@ export default function PaywallSkipper() {
             >
               <AccordionItem value="item-1">
                 <AccordionTrigger className="text-left text-stone-800">
-                  How does PaywallSkipper work?
+                  How does PaywallSkip work?
                 </AccordionTrigger>
                 <AccordionContent className="text-stone-600">
-                  PaywallSkipper uses advanced techniques to bypass paywalls on
+                  PaywallSkip uses advanced techniques to bypass paywalls on
                   news websites and academic journals. Simply paste the URL of
                   the article you want to read, and our system will attempt to
                   retrieve the full content for you.
@@ -114,7 +87,7 @@ export default function PaywallSkipper() {
               </AccordionItem>
               <AccordionItem value="item-2">
                 <AccordionTrigger className="text-left text-stone-800">
-                  Is using PaywallSkipper legal?
+                  Is using PaywallSkip legal?
                 </AccordionTrigger>
                 <AccordionContent className="text-stone-600">
                   The legality of paywall bypassing is a stone area and can vary
@@ -125,11 +98,11 @@ export default function PaywallSkipper() {
               </AccordionItem>
               <AccordionItem value="item-3">
                 <AccordionTrigger className="text-left text-stone-800">
-                  Which websites does PaywallSkipper support?
+                  Which websites does PaywallSkip support?
                 </AccordionTrigger>
                 <AccordionContent className="text-stone-600">
-                  PaywallSkipper supports a wide range of popular news websites
-                  and academic journals. However, due to the constantly changing
+                  PaywallSkip supports a wide range of popular news websites and
+                  academic journals. However, due to the constantly changing
                   nature of paywalls, we can&apos;t guarantee access to every
                   site. Check our updated list of supported websites for more
                   details.
@@ -162,7 +135,7 @@ export default function PaywallSkipper() {
       </main>
       <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t border-stone-300">
         <p className="text-xs text-stone-500">
-          © {new Date().getFullYear()} PaywallSkipper. All rights reserved.
+          © {new Date().getFullYear()} PaywallSkip. All rights reserved.
         </p>
         <nav className="sm:ml-auto flex gap-4 sm:gap-6">
           <Link
