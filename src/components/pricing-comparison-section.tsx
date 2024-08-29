@@ -16,6 +16,7 @@ const subscriptions = [
   { name: 'Financial Times', price: 39 },
   { name: 'The Guardian', price: 15 },
   { name: 'Reuters', price: 35 },
+  { name: 'Bloomberg', price: 35 },
   { name: 'Paywall Skip', price: 0 },
 ];
 
