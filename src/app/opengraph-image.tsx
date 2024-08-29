@@ -36,30 +36,11 @@ export default async function Image() {
             width='120'
             height='120'
             viewBox='0 0 24 24'
-            fill='none'
-            stroke='#1f2937'
-            strokeWidth='2'
-            strokeLinecap='round'
-            strokeLinejoin='round'
           >
-            <path d='M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z' />
-            <path d='M8 7h6' />
-            <path d='M8 11h8' />
-            <path d='M8 15h6' />
-          </svg>
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            width='80'
-            height='80'
-            viewBox='0 0 24 24'
-            fill='none'
-            stroke='#10b981'
-            strokeWidth='2'
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            style={{ marginLeft: -30, marginTop: 60 }}
-          >
-            <path d='M12 20v-6M6 20V10M18 20V4' />
+            <path
+              fill='currentColor'
+              d='M3 16h9v5H3zm-1-6h6v5H2zm7 0h6v5H9zm7 0h6v5h-6zm-3 6h8v5h-8zM3 4h8v5H3zm9 0h9v5h-9z'
+            />
           </svg>
         </div>
         <div

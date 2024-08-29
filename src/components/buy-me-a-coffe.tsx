@@ -7,7 +7,7 @@ export default function BuyMeACoffee() {
       rel='noopener noreferrer'
       href='https://buymeacoffee.com/francocanzani'
       title='Buy me a coffe'
-      className='fixed right-0 z-50 bottom-0 text-xs uppercase bg-yellow-100 py-2 px-1 rounded-tl-md shadow-md hover:bg-yellow-50 transition-colors duration-300'
+      className='fixed right-0 z-50 bottom-0 text-xs uppercase bg-yellow-100 p-2 rounded-tl-md shadow-md hover:bg-yellow-50 transition-colors duration-300'
     >
       <Image
         height={20}
