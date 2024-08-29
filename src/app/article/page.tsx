@@ -3,6 +3,8 @@ import ArticleContent from '@/components/article-content';
 import ArticleSkeleton from '@/components/skeletons/article-skeleton';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import Header from '@/components/header';
+import ArticleScrollBar from '@/components/article-scroll-bar';
 
 export const maxDuration = 30;
 
@@ -15,6 +17,8 @@ export default function Page({
 
   return (
     <Suspense fallback={<ArticleSkeleton />}>
+      <ArticleScrollBar />
+      <Header />
       <div className='max-w-3xl mx-auto px-4 pt-8'>
         <Link
           href={'/'}

@@ -16,6 +16,7 @@
     "@vercel/postgres": "^0.9.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "framer-motion": "^11.3.31",
     "isomorphic-dompurify": "^2.15.0",
     "jsdom": "^25.0.0",
     "lucide-react": "^0.436.0",
