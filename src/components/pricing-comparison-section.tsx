@@ -15,10 +15,17 @@ const subscriptions = [
   { name: 'The Washington Post', price: 10 },
   { name: 'The Economist', price: 19 },
   { name: 'Financial Times', price: 39 },
+  { name: 'The Guardian', price: 15 },
+  { name: 'Reuters', price: 35 },
+  { name: 'Bloomberg', price: 35 },
   { name: 'Paywall Skip', price: 0 },
 ];
 
 export default function PricingComparisonSection() {
+  const totalPaidSubscriptions = subscriptions
+    .filter((sub) => sub.price > 0)
+    .reduce((total, sub) => total + sub.price, 0);
+
   return (
     <section className='py-12 bg-stone-100'>
       <div className='container mx-auto px-4'>
@@ -49,17 +56,21 @@ export default function PricingComparisonSection() {
               {subscriptions.map((sub) => (
                 <TableRow
                   key={sub.name}
-                  className={sub.name === 'Paywall Skip' ? 'bg-green-50' : ''}
+                  className={
+                    sub.name === 'Paywall Skip'
+                      ? 'bg-green-50 hover:bg-green-100'
+                      : ''
+                  }
                 >
-                  <TableCell className='font-medium'>
+                  <TableCell className='font-medium p-2.5'>
                     {sub.name}
                     {sub.name === 'Paywall Skip' && (
-                      <Badge className='ml-2 bg-stone-800 rounded-md'>
+                      <Badge className='ml-2 py-0.5 px-2 bg-stone-800 rounded-md'>
                         Free
                       </Badge>
                     )}
                   </TableCell>
-                  <TableCell className='text-right'>
+                  <TableCell className='text-right p-2.5'>
                     {sub.price === 0 ? (
                       <span className='font-bold text-green-600'>$0.00</span>
                     ) : (
@@ -68,6 +79,14 @@ export default function PricingComparisonSection() {
                   </TableCell>
                 </TableRow>
               ))}
+              <TableRow className='font-bold bg-stone-200'>
+                <TableCell className='p-2.5'>
+                  Total Cost of Paid Subscriptions
+                </TableCell>
+                <TableCell className='text-right p-2.5'>
+                  ${totalPaidSubscriptions.toFixed(2)}
+                </TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         </div>
@@ -75,8 +94,9 @@ export default function PricingComparisonSection() {
         <div className='mt-8 text-center'>
           <p className='text-sm text-stone-500'>
             Paywall Skip provides access to articles from various sources
-            without individual subscriptions. However, we encourage supporting
-            quality journalism when possible.
+            without individual subscriptions, potentially saving you up to $
+            {totalPaidSubscriptions.toFixed(2)} per month. However, we encourage
+            supporting quality journalism when possible.
           </p>
         </div>
       </div>
