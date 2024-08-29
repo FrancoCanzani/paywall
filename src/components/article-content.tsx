@@ -1,6 +1,6 @@
-import DOMPurify from 'isomorphic-dompurify';
-import { getArticleContent } from '@/lib/helper/get-article';
-import { Link } from 'lucide-react';
+import DOMPurify from "isomorphic-dompurify";
+import { Link } from "lucide-react";
+import { getArticleContent } from "@/lib/helpers/get-article";
 
 interface Article {
   title: string;
@@ -18,7 +18,7 @@ export default async function ArticleContent({ url }: { url: string }) {
 
   if (result.error) {
     return (
-      <div className='max-w-3xl mx-auto text-center font-medium w-full px-4 py-8 space-y-3'>
+      <div className="max-w-3xl mx-auto text-center font-medium w-full px-4 py-8 space-y-3">
         <p>
           Sorry, it looks we couldn&apos;t skip {new URL(url).hostname}&apos;s
           paywall.
@@ -33,7 +33,7 @@ export default async function ArticleContent({ url }: { url: string }) {
 
   if (!result.article) {
     return (
-      <div className='max-w-3xl mx-auto text-center font-medium w-full px-4 py-8'>
+      <div className="max-w-3xl mx-auto text-center font-medium w-full px-4 py-8">
         No article content available
       </div>
     );
@@ -42,22 +42,22 @@ export default async function ArticleContent({ url }: { url: string }) {
   const { article } = result;
 
   return (
-    <div className='max-w-3xl mx-auto px-4 pt-8'>
-      <h1 className='text-3xl font-bold mb-4'>{article.title}</h1>
+    <div className="max-w-3xl mx-auto px-4 pt-8">
+      <h1 className="text-3xl font-bold mb-4">{article.title}</h1>
       {article.byline && (
-        <p className='text-stone-600 mb-2'>{article.byline}</p>
+        <p className="text-stone-600 mb-2">{article.byline}</p>
       )}
       <a
         href={url}
-        target='_blank'
-        rel='noopener noreferrer'
-        className='text-stone-500 mb-2 flex items-center justify-start gap-x-1.5'
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-stone-500 mb-2 flex items-center justify-start gap-x-1.5"
       >
         <Link size={14} />
-        <span className='hover:underline'>{new URL(url).hostname}</span>
+        <span className="hover:underline">{new URL(url).hostname}</span>
       </a>
       <article
-        className='prose prose-img:rounded-sm'
+        className="prose prose-img:rounded-sm"
         dangerouslySetInnerHTML={{
           __html: DOMPurify.sanitize(article.content),
         }}
