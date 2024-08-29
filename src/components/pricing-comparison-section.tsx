@@ -12,12 +12,10 @@ import { Badge } from '@/components/ui/badge';
 const subscriptions = [
   { name: 'The New York Times', price: 17 },
   { name: 'The Wall Street Journal', price: 39 },
-  { name: 'The Washington Post', price: 10 },
   { name: 'The Economist', price: 19 },
   { name: 'Financial Times', price: 39 },
   { name: 'The Guardian', price: 15 },
   { name: 'Reuters', price: 35 },
-  { name: 'Bloomberg', price: 35 },
   { name: 'Paywall Skip', price: 0 },
 ];
 
