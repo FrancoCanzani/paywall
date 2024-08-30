@@ -13,8 +13,7 @@ import { getTotalSuccessRate } from '@/lib/helpers/success-rate';
 import { Badge } from '@/components/ui/badge';
 
 export default async function PaywallSkip() {
-  const { totalSuccesses, totalFailures, overallSuccessRate } =
-    await getTotalSuccessRate();
+  const { overallSuccessRate } = await getTotalSuccessRate();
 
   return (
     <div className='flex flex-col min-h-screen bg-stone-50'>
@@ -24,9 +23,11 @@ export default async function PaywallSkip() {
         <section className='w-full py-12 md:py-24 lg:py-28 xl:py-36'>
           <div className='container px-4 md:px-6'>
             <div className='flex flex-col items-center space-y-8 text-center'>
-              <Badge className='rounded-md px-3'>
-                {overallSuccessRate.toFixed()}% Success Rate
-              </Badge>
+              {overallSuccessRate > 0 && (
+                <Badge className='rounded-md px-3'>
+                  {overallSuccessRate.toFixed()}% Success Rate
+                </Badge>
+              )}
               <div className='space-y-4'>
                 <h1 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-stone-800'>
                   Skip Paywalls, Access Knowledge
