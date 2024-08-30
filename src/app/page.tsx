@@ -12,7 +12,7 @@ import PricingComparisonSection from "@/components/pricing-comparison-section";
 import { getTotalSuccessRate } from "@/lib/helpers/success-rate";
 import { Badge } from "@/components/ui/badge";
 
-export default async function PaywallSkip() {
+export default async function Page() {
   const { overallSuccessRate } = await getTotalSuccessRate();
 
   return (
@@ -20,7 +20,7 @@ export default async function PaywallSkip() {
       <Header />
       <BuyMeACoffe />
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-28 xl:py-32">
+        <section className="w-full py-12 md:py-24 lg:py-26 xl:py-28">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center space-y-8 text-center">
               {overallSuccessRate > 0 && (
@@ -29,9 +29,11 @@ export default async function PaywallSkip() {
                 </Badge>
               )}
               <div className="space-y-4">
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-stone-800">
-                  Skip Paywalls, Access Knowledge
-                </h1>
+                <div className="bg-gradient-to-b py-2 from-stone-500 to-stone-800 bg-clip-text text-transparent">
+                  <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
+                    Skip Paywalls, Access Knowledge
+                  </h1>
+                </div>
                 <p className="mx-auto max-w-[700px] text-stone-600 md:text-xl">
                   Unlock articles behind paywalls and access the information you
                   need. Fast, easy, and reliable.
@@ -117,15 +119,21 @@ export default async function PaywallSkip() {
         <nav className="sm:ml-auto flex gap-4 sm:gap-6">
           <Link
             className="text-xs hover:underline underline-offset-4 text-stone-500"
-            href="#"
+            href="/posts/tos"
           >
             Terms of Service
           </Link>
           <Link
             className="text-xs hover:underline underline-offset-4 text-stone-500"
-            href="#"
+            href="/posts/privacy"
           >
             Privacy
+          </Link>
+          <Link
+            className="text-xs hover:underline underline-offset-4 text-stone-500"
+            href="/posts/legal"
+          >
+            Legal
           </Link>
         </nav>
       </footer>
