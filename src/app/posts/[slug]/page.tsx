@@ -40,7 +40,7 @@ export default async function Post({ params }: PostProps) {
   return (
     <>
       <ArticleScrollBar />
-      <Header />
+      <Header showAnchor />
       <div className="max-w-3xl mx-auto px-4 py-8 prose">
         <h1>{frontMatter.title}</h1>
         <p className="text-sm text-gray-500">

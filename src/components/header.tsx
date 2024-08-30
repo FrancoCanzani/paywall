@@ -1,9 +1,15 @@
+import React from "react";
+import { ArrowUp } from "lucide-react";
 import Link from "next/link";
 
-export default function Header() {
+export default function Header({
+  showAnchor = false,
+}: {
+  showAnchor?: boolean;
+}) {
   return (
     <header className="px-4 lg:px-6 h-14 flex items-center">
-      <Link className="flex items-center justify-center" href="/">
+      <Link className="flex items-center justify-center" href="/" id="anchor">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="1.2rem"
@@ -33,6 +39,15 @@ export default function Header() {
           Blacklist
         </Link>
       </nav>
+      {showAnchor && (
+        <a
+          href="#anchor"
+          className="fixed bottom-2 right-2 bg-stone-800 text-white p-0.5 rounded-full"
+        >
+          <ArrowUp size={16} />
+          <span className="sr-only">Scroll to top</span>
+        </a>
+      )}
     </header>
   );
 }
