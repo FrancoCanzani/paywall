@@ -13,8 +13,10 @@ import { getTotalSuccessRate } from '@/lib/helpers/success-rate';
 import { Badge } from '@/components/ui/badge';
 
 export default async function PaywallSkip() {
-  const { totalSuccesses, totalFailures, successRate } =
+  const { urlStats, totalSuccesses, totalFailures, overallSuccessRate } =
     await getTotalSuccessRate();
+
+  console.log(urlStats);
 
   return (
     <div className='flex flex-col min-h-screen bg-stone-50'>
@@ -25,7 +27,7 @@ export default async function PaywallSkip() {
           <div className='container px-4 md:px-6'>
             <div className='flex flex-col items-center space-y-8 text-center'>
               <Badge className='rounded-md px-3'>
-                {successRate}% ({totalSuccesses}/
+                {overallSuccessRate.toFixed()}% ({totalSuccesses}/
                 {totalSuccesses + totalFailures}) Success Rate
               </Badge>
               <div className='space-y-4'>
