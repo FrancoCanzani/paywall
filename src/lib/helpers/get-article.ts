@@ -13,6 +13,7 @@ import { checkRateLimit } from './check-rate-limit';
 import { ArticleSchema } from '../schemas';
 import { getClientIP } from './get-client-ip';
 import { USER_AGENTS, REFERERS } from '../constants';
+import { incrementFailureCount, incrementSuccessCount } from './success-rate';
 
 type Article = z.infer<typeof ArticleSchema>;
 
@@ -83,8 +84,26 @@ async function tryFetchWithReferers(url: string): Promise<string> {
 }
 
 async function tryFetchFromArchives(url: string): Promise<string> {
+  // Check if the URL is for Bloomberg
+  if (new URL(url).hostname === 'www.bloomberg.com') {
+    // Try the Wayback Machine URL first
+    const waybeckUrl = `https://web.archive.org/web/2/${url}`;
+    try {
+      const response = await fetchWithTimeout(
+        waybeckUrl,
+        {
+          headers: { 'User-Agent': USER_AGENTS.default },
+        },
+        20000
+      );
+      return await response.text();
+    } catch (error) {
+      console.log(`Failed to fetch from Wayback Machine: ${waybeckUrl}`, error);
+    }
+  }
+
+  // Try other archives if the Wayback Machine fails or for non-Bloomberg URLs
   const archives = [
-    `https://web.archive.org/web/2/${url}`,
     `https://archive.is/latest/${url}`,
     `https://webcache.googleusercontent.com/search?q=cache:${url}`,
   ];
@@ -103,6 +122,7 @@ async function tryFetchFromArchives(url: string): Promise<string> {
       console.log(`Failed to fetch from archive ${archiveUrl}:`, error);
     }
   }
+
   throw new Error('Failed to fetch content from all archives');
 }
 
@@ -120,19 +140,16 @@ export async function getArticleContent(url: string): Promise<ArticleResponse> {
     // Try different methods to fetch the content
     try {
       html = await tryFetchWithUserAgents(url);
+      await incrementSuccessCount(url);
     } catch (error) {
       console.log('Failed with user agents, trying referers');
       try {
         html = await tryFetchWithReferers(url);
+        await incrementSuccessCount(url);
       } catch (error) {
         console.log('Failed with referers, trying archives');
-        if (new URL(url).hostname === 'www.bloomberg.com') {
-          html = await tryFetchFromArchives(
-            `https://web.archive.org/web/2/${url}`
-          );
-        } else {
-          html = await tryFetchFromArchives(url);
-        }
+        html = await tryFetchFromArchives(url);
+        await incrementSuccessCount(url);
       }
     }
 
@@ -147,6 +164,7 @@ export async function getArticleContent(url: string): Promise<ArticleResponse> {
     const article = reader.parse();
 
     if (!article) {
+      await incrementFailureCount(url);
       throw new Error('Failed to extract article content');
     }
 
@@ -167,6 +185,7 @@ export async function getArticleContent(url: string): Promise<ArticleResponse> {
 
     return { article: validatedArticle };
   } catch (err) {
+    await incrementFailureCount(url);
     let errorMessage: string;
 
     if (err instanceof z.ZodError) {
