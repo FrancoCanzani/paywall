@@ -84,25 +84,21 @@ async function tryFetchWithReferers(url: string): Promise<string> {
 }
 
 async function tryFetchFromArchives(url: string): Promise<string> {
-  // Check if the URL is for Bloomberg
-  if (new URL(url).hostname === 'www.bloomberg.com') {
-    // Try the Wayback Machine URL first
-    const waybeckUrl = `https://web.archive.org/web/2/${url}`;
-    try {
-      const response = await fetchWithTimeout(
-        waybeckUrl,
-        {
-          headers: { 'User-Agent': USER_AGENTS.default },
-        },
-        20000
-      );
-      return await response.text();
-    } catch (error) {
-      console.log(`Failed to fetch from Wayback Machine: ${waybeckUrl}`, error);
-    }
+  const waybeckUrl = `https://web.archive.org/web/2/${url}`;
+  try {
+    const response = await fetchWithTimeout(
+      waybeckUrl,
+      {
+        headers: { 'User-Agent': USER_AGENTS.default },
+      },
+      20000
+    );
+    return await response.text();
+  } catch (error) {
+    console.log(`Failed to fetch from Wayback Machine: ${waybeckUrl}`, error);
   }
 
-  // Try other archives if the Wayback Machine fails or for non-Bloomberg URLs
+  // Try other archives if the Wayback Machine fails
   const archives = [
     `https://archive.is/latest/${url}`,
     `https://webcache.googleusercontent.com/search?q=cache:${url}`,
@@ -136,20 +132,40 @@ export async function getArticleContent(url: string): Promise<ArticleResponse> {
 
   try {
     let html: string;
+    const urlHostname = new URL(url).hostname;
 
-    // Try different methods to fetch the content
-    try {
-      html = await tryFetchWithUserAgents(url);
-      await incrementSuccessCount(url);
-    } catch (error) {
-      console.log('Failed with user agents, trying referers');
+    // For Bloomberg, try archive first
+    if (urlHostname === 'www.bloomberg.com') {
       try {
-        html = await tryFetchWithReferers(url);
-        await incrementSuccessCount(url);
-      } catch (error) {
-        console.log('Failed with referers, trying archives');
         html = await tryFetchFromArchives(url);
         await incrementSuccessCount(url);
+      } catch (error) {
+        console.log(
+          'Failed to fetch Bloomberg article from archives, trying other methods'
+        );
+        try {
+          html = await tryFetchWithUserAgents(url);
+          await incrementSuccessCount(url);
+        } catch (error) {
+          html = await tryFetchWithReferers(url);
+          await incrementSuccessCount(url);
+        }
+      }
+    } else {
+      // For non-Bloomberg URLs, use the original order
+      try {
+        html = await tryFetchWithUserAgents(url);
+        await incrementSuccessCount(url);
+      } catch (error) {
+        console.log('Failed with user agents, trying referers');
+        try {
+          html = await tryFetchWithReferers(url);
+          await incrementSuccessCount(url);
+        } catch (error) {
+          console.log('Failed with referers, trying archives');
+          html = await tryFetchFromArchives(url);
+          await incrementSuccessCount(url);
+        }
       }
     }
 
@@ -175,7 +191,7 @@ export async function getArticleContent(url: string): Promise<ArticleResponse> {
       content: processedContent,
       textContent: article.textContent || '',
       length: article.textContent?.length || 0,
-      siteName: article.siteName || new URL(url).hostname,
+      siteName: article.siteName || urlHostname,
       byline: article.byline || null,
       dir: article.dir || null,
       lang: article.lang || null,
