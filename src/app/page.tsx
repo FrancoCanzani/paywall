@@ -13,8 +13,6 @@ import { getTotalSuccessRate } from "@/lib/helpers/success-rate";
 import { Badge } from "@/components/ui/badge";
 
 export default async function Page() {
-  const { overallSuccessRate } = await getTotalSuccessRate();
-
   return (
     <div className="flex flex-col min-h-screen bg-stone-50">
       <Header />
