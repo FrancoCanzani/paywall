@@ -21,11 +21,11 @@ export default async function Page() {
         <section className="w-full py-12 md:py-24 lg:py-26 xl:py-28">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center space-y-8 text-center">
-              {overallSuccessRate > 0 && (
+              {/* {overallSuccessRate > 0 && (
                 <Badge className="rounded-md px-3 bg-stone-800 hover:bg-stone-700 shadow">
                   {overallSuccessRate.toFixed()}% Success Rate
                 </Badge>
-              )}
+              )} */}
               <div className="space-y-4">
                 <div className="bg-gradient-to-b py-2 from-stone-500 to-stone-800 bg-clip-text text-transparent">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
